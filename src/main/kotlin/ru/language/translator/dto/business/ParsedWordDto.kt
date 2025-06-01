@@ -5,7 +5,7 @@ data class ParsedObjectByTwoLangs(
     val secondLangText: String,
     val complexity: Int,
     val firstLangPosition: Int,
-    val secondLangPosition: Int
+    val secondLangPosition: Int,
 )
 
 data class ParsedObjectByLang(

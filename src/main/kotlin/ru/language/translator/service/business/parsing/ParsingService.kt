@@ -23,7 +23,7 @@ class ParsingService {
         return resultList
     }
 
-    private fun String.parseStringToDto(): List<ParsedObjectByLang?> {
+    fun String.parseStringToDto(): List<ParsedObjectByLang?> {
         val pattern = Regex("""^(.*?)(?=#\d+@\d+$)#(\d+)@(\d+)$""")
 
         return this

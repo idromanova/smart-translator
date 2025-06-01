@@ -6,16 +6,16 @@ import jakarta.persistence.*
 @Table(name = "translations")
 data class Translation(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
 
     @OneToOne
     @JoinColumn(name = "original_word_id")
-    val originalWord: Word,
+    val originalWord: Word?,
 
     @OneToOne
     @JoinColumn(name = "translated_word_id")
-    val translatedWord: Word
+    val translatedWord: Word?
 ) {
     constructor() : this(0L, Word(), Word())
 }
