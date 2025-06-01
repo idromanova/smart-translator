@@ -1,8 +1,8 @@
-package ru.language.translator.service.parsing
+package ru.language.translator.service.business.parsing
 
 import org.springframework.stereotype.Service
-import ru.language.translator.dto.ParsedObjectByLang
-import ru.language.translator.dto.ParsedObjectByTwoLangs
+import ru.language.translator.dto.business.ParsedObjectByLang
+import ru.language.translator.dto.business.ParsedObjectByTwoLangs
 
 @Service
 class ParsingService {

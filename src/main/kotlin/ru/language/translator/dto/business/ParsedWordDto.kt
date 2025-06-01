@@ -1,4 +1,4 @@
-package ru.language.translator.dto
+package ru.language.translator.dto.business
 
 data class ParsedObjectByTwoLangs(
     val firstLangText: String,

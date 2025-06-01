@@ -1,7 +1,7 @@
-package ru.language.translator.service.replace
+package ru.language.translator.service.business.replace
 
 import org.springframework.stereotype.Component
-import ru.language.translator.dto.ParsedObjectByTwoLangs
+import ru.language.translator.dto.business.ParsedObjectByTwoLangs
 import kotlin.math.roundToInt
 
 @Component

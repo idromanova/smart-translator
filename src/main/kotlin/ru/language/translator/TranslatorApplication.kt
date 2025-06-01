@@ -2,8 +2,8 @@ package ru.language.translator
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import ru.language.translator.service.parsing.ParsingService
-import ru.language.translator.service.replace.ReplaceService
+import ru.language.translator.service.business.parsing.ParsingService
+import ru.language.translator.service.business.replace.ReplaceService
 
 @SpringBootApplication
 class TranslatorApplication
