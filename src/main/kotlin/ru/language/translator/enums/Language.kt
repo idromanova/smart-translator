@@ -1,4 +1,4 @@
-package ru.language.translator.dto.data.enums
+package ru.language.translator.enums
 
 enum class Language(val languageCode: String) {
     RU("ru"),

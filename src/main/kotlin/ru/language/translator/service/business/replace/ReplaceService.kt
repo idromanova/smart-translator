@@ -1,7 +1,7 @@
 package ru.language.translator.service.business.replace
 
 import org.springframework.stereotype.Component
-import ru.language.translator.dto.business.ParsedObjectByTwoLangs
+import ru.language.translator.dto.ParsedObjectByTwoLangs
 import kotlin.math.roundToInt
 
 @Component
@@ -37,14 +37,14 @@ class ReplaceService {
         var complexityLevel = 1
         val replacedWordList = mutableListOf<ParsedObjectByTwoLangs>()
         while (replacedWordList.count() != replaceWordCount) {
-            val worldByComplexityGroup = groupedByComplexity[complexityLevel] ?: listOf()
-            if (worldByComplexityGroup.count() < (replaceWordCount - replacedWordList.count())) {
-                replacedWordList.addAll(worldByComplexityGroup)
+            val wordByComplexityGroup = groupedByComplexity[complexityLevel] ?: listOf()
+            if (wordByComplexityGroup.count() < (replaceWordCount - replacedWordList.count())) {
+                replacedWordList.addAll(wordByComplexityGroup)
                 complexityLevel += 1
             }
             else {
                 replacedWordList.addAll(
-                    worldByComplexityGroup.shuffled()
+                    wordByComplexityGroup.shuffled()
                         .take(replaceWordCount - replacedWordList.count())
                 )
             }

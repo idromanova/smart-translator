@@ -2,10 +2,10 @@ package ru.language.translator.service.data.translations
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.language.translator.dto.business.ParsedObjectByTwoLangs
-import ru.language.translator.dto.data.Translation
-import ru.language.translator.dto.data.Word
-import ru.language.translator.repository.data.TranslationRepository
+import ru.language.translator.dto.ParsedObjectByTwoLangs
+import ru.language.translator.entity.Translation
+import ru.language.translator.entity.Word
+import ru.language.translator.repository.TranslationRepository
 
 @Service
 class TranslationsService {
@@ -22,17 +22,27 @@ class TranslationsService {
             )
         }
 
-        translationList = translationList.distinct().toMutableList()
+        translationList = translationList.distinctBy {
+            listOf(it.originalWord?.id, it.translatedWord?.id)
+        }.toMutableList()
+
+        val translationListPairs = translationList.map { Pair(it.originalWord?.id, it.translatedWord?.id) }
 
         val existsTranslation = translationRepository.findAllByOriginalWordInAndTranslatedWordIn(
             translationList.mapNotNull { it.originalWord },
             translationList.mapNotNull { it.translatedWord }
         ).filter {
-            translationList.contains(it)
+            translationListPairs.contains(Pair(it.originalWord?.id, it.translatedWord?.id))
         }
 
-        val newTranslations = translationList.filter { !existsTranslation.contains(it) }
-        val result = translationRepository.saveAllAndFlush(newTranslations)
+        val existsTranslationPairs = existsTranslation.map { Pair(it.originalWord?.id, it.translatedWord?.id) }
+
+        val newTranslations = translationList.filter {
+            !existsTranslationPairs.contains(Pair(it.originalWord?.id, it.translatedWord?.id))
+        }
+        if (newTranslations.isEmpty()) return existsTranslation
+
+        val result = translationRepository.saveAll(newTranslations)
         return result + existsTranslation
     }
 

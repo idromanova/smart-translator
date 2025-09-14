@@ -1,13 +1,16 @@
--- CREATE DATABASE smart_translator;
-
-CREATE TABLE IF NOT EXISTS words (
-    id SERIAL PRIMARY KEY,
-    text VARCHAR(50) NOT NULL,
-    language VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS translations (
-    id SERIAL PRIMARY KEY,
-    original_word_id INT NOT NULL REFERENCES words(id),
-    translated_word_id INT NOT NULL REFERENCES words(id)
-);
+-- -- CREATE DATABASE smart_translator;
+-- CREATE SEQUENCE IF NOT EXISTS word_sequence START 1 INCREMENT BY 20;
+-- ALTER SEQUENCE word_sequence INCREMENT BY 20;
+-- CREATE SEQUENCE IF NOT EXISTS translation_sequence START 1 INCREMENT BY 20;
+--
+-- CREATE TABLE IF NOT EXISTS words (
+--     id SERIAL PRIMARY KEY,
+--     text VARCHAR(50) NOT NULL,
+--     language VARCHAR(50) NOT NULL
+-- );
+--
+-- CREATE TABLE IF NOT EXISTS translations (
+--     id SERIAL PRIMARY KEY,
+--     original_word_id INT NOT NULL REFERENCES words(id),
+--     translated_word_id INT NOT NULL REFERENCES words(id)
+-- );

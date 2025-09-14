@@ -1,14 +1,15 @@
 package ru.language.translator.service.business.parsing
 
 import org.springframework.stereotype.Service
-import ru.language.translator.dto.business.ParsedObjectByLang
-import ru.language.translator.dto.business.ParsedObjectByTwoLangs
+import ru.language.translator.dto.ParsedObjectByLang
+import ru.language.translator.dto.ParsedObjectByTwoLangs
+import ru.language.translator.dto.rq.AddNewBookRq
 
 @Service
 class ParsingService {
-    fun parseText(firstString: String, secondString: String): List<ParsedObjectByTwoLangs> {
-        val firstObjectsList = firstString.parseStringToDto()
-        val secondObjectsList = secondString.parseStringToDto()
+    fun parseText(addNewBookRq: AddNewBookRq): List<ParsedObjectByTwoLangs> {
+        val firstObjectsList = addNewBookRq.originalBook.parseStringToDto()
+        val secondObjectsList = addNewBookRq.translatedBook.parseStringToDto()
 
         val resultList = firstObjectsList.map { firstLangObject ->
             val secondLangObject = secondObjectsList.find { it!!.position == firstLangObject!!.position }

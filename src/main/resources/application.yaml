@@ -1,17 +1,16 @@
 spring:
+  application:
+    name: smart-translator
   datasource:
     url: jdbc:postgresql://localhost:5432/smart_translator
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+
   jpa:
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true
         format_sql: true
-  sql:
-    init:
-      mode: ALWAYS
-      schema-locations: classpath*:sql/init.sql
-
-
